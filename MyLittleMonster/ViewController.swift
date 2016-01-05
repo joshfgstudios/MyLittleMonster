@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var imgPenalty1: UIImageView!
     @IBOutlet weak var imgPenalty2: UIImageView!
     @IBOutlet weak var imgPenalty3: UIImageView!
+    @IBOutlet weak var lblGameOver: UILabel!
+    @IBOutlet weak var btnRestart: UIButton!
     
     let DIM_ALPHA: CGFloat = 0.2
     let OPAQUE: CGFloat = 1.0
@@ -94,9 +96,23 @@ class ViewController: UIViewController {
     }
     
     func changeGameState() {
+        let rand = arc4random_uniform(2)
+        if rand == 0 {
+            imgFood.alpha = DIM_ALPHA
+            imgFood.userInteractionEnabled = false
+            imgHeart.alpha = OPAQUE
+            imgHeart.userInteractionEnabled = true
+        } else {
+            imgHeart.alpha = DIM_ALPHA
+            imgHeart.userInteractionEnabled = false
+            imgFood.alpha = OPAQUE
+            imgFood.userInteractionEnabled = true
+        }
+        
         if !monsterHappy {
             currentPenalties++
             sfxSkull.play()
+            
             if currentPenalties == 1 {
                 imgPenalty1.alpha = OPAQUE
                 imgPenalty2.alpha = DIM_ALPHA
@@ -115,20 +131,7 @@ class ViewController: UIViewController {
                 gameOver()
             }
         }
-        
-        let rand = arc4random_uniform(2)
-        if rand == 0 {
-            imgFood.alpha = DIM_ALPHA
-            imgFood.userInteractionEnabled = false
-            imgHeart.alpha = OPAQUE
-            imgHeart.userInteractionEnabled = true
-        } else {
-            imgHeart.alpha = DIM_ALPHA
-            imgHeart.userInteractionEnabled = false
-            imgFood.alpha = OPAQUE
-            imgFood.userInteractionEnabled = true
-        }
-        
+
         currentItem = rand
         monsterHappy = false
     }
@@ -137,11 +140,33 @@ class ViewController: UIViewController {
         timer.invalidate()
         imgMonster.playDeathAnimation()
         sfxDeath.play()
-        imgHeart.alpha = DIM_ALPHA
-        imgFood.alpha = DIM_ALPHA
         imgHeart.userInteractionEnabled = false
         imgFood.userInteractionEnabled = false
+        imgHeart.alpha = DIM_ALPHA
+        imgFood.alpha = DIM_ALPHA
+        lblGameOver.hidden = false
+        btnRestart.hidden = false
     }
+    
+    @IBAction func onRevivePressed(sender: AnyObject) {
+        lblGameOver.hidden = true
+        btnRestart.hidden = true
+        
+        imgFood.dropTarget = imgMonster
+        imgHeart.dropTarget = imgMonster
+        
+        imgPenalty1.alpha = DIM_ALPHA
+        imgPenalty2.alpha = DIM_ALPHA
+        imgPenalty3.alpha = DIM_ALPHA
+        imgHeart.alpha = DIM_ALPHA
+        imgFood.alpha = DIM_ALPHA
+        imgMonster.playIdleAnimation()
+        
+        currentPenalties = 0
+        monsterHappy = true
+        startTimer()
+    }
+    
     
 }
 

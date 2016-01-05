@@ -92,13 +92,39 @@
                                     </mask>
                                 </variation>
                             </stackView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your pet died!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHH-qA-5ff">
+                                <rect key="frame" x="238" y="150" width="125" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="KSd-Kd-8Cv"/>
+                                    <constraint firstAttribute="width" constant="125" id="dkE-s7-eHb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btd-ha-9IU">
+                                <rect key="frame" x="229" y="278" width="143" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="86B-nX-U2s"/>
+                                    <constraint firstAttribute="height" constant="43" id="QO1-zR-0ff"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
+                                <state key="normal" title="Revive!">
+                                    <color key="titleColor" red="1" green="0.34745175189999999" blue="0.43113101739999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRevivePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cXL-8k-rge"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="top" secondItem="WaM-9N-zlh" secondAttribute="bottom" constant="20" id="0cM-X6-kZi"/>
+                            <constraint firstItem="PHH-qA-5ff" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="130" id="18s-vp-1xe"/>
                             <constraint firstItem="WaM-9N-zlh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="22n-Do-Vrk"/>
                             <constraint firstItem="dlj-uy-0xa" firstAttribute="top" secondItem="ajQ-Uv-5je" secondAttribute="bottom" constant="-15" id="GE5-zE-e57"/>
                             <constraint firstAttribute="trailing" secondItem="4ZK-r2-xbO" secondAttribute="trailing" id="IIB-IP-9BF"/>
+                            <constraint firstItem="Btd-ha-9IU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IO9-NU-vFT"/>
                             <constraint firstItem="dlj-uy-0xa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IZO-6y-kmy"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dlj-uy-0xa" secondAttribute="bottom" id="KWI-Tx-paW"/>
                             <constraint firstItem="Kfi-DT-pr9" firstAttribute="centerY" secondItem="WaM-9N-zlh" secondAttribute="centerY" constant="2" id="LwP-4a-9yd"/>
@@ -106,6 +132,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4ZK-r2-xbO" secondAttribute="bottom" id="Q6p-Lt-gZD"/>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U98-fI-CiH"/>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Y3T-IG-2a2"/>
+                            <constraint firstItem="Btd-ha-9IU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Znd-76-ecp"/>
                             <constraint firstAttribute="trailing" secondItem="dlj-uy-0xa" secondAttribute="trailing" id="aib-fm-DV5"/>
                             <constraint firstItem="WaM-9N-zlh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bdR-aW-Xy5"/>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="top" secondItem="WaM-9N-zlh" secondAttribute="bottom" constant="20" id="dUZ-y8-cY7"/>
@@ -113,6 +140,7 @@
                             <constraint firstItem="dlj-uy-0xa" firstAttribute="top" secondItem="ajQ-Uv-5je" secondAttribute="bottom" constant="-20" id="lvk-bW-nCd"/>
                             <constraint firstItem="Kfi-DT-pr9" firstAttribute="centerX" secondItem="WaM-9N-zlh" secondAttribute="centerX" constant="-4" id="nDY-VG-Idr"/>
                             <constraint firstItem="4ZK-r2-xbO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qbT-FT-fli"/>
+                            <constraint firstItem="PHH-qA-5ff" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qcp-BM-fiT"/>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sgf-mT-VkC"/>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uTA-qj-5Qx"/>
                             <constraint firstItem="BT7-XP-W4R" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ufS-cP-DhV"/>
@@ -141,12 +169,14 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="btnRestart" destination="Btd-ha-9IU" id="8c8-dH-6Xu"/>
                         <outlet property="imgFood" destination="3f3-pC-fs7" id="l75-da-B2E"/>
                         <outlet property="imgHeart" destination="sx4-eP-5S7" id="mDp-FG-30U"/>
                         <outlet property="imgMonster" destination="ajQ-Uv-5je" id="dLh-Zz-QBy"/>
                         <outlet property="imgPenalty1" destination="8lv-SA-owg" id="5p3-KZ-Mig"/>
                         <outlet property="imgPenalty2" destination="RgW-yb-uEF" id="OAU-V4-9e7"/>
                         <outlet property="imgPenalty3" destination="NEa-ER-3Zx" id="YqW-1H-Bxe"/>
+                        <outlet property="lblGameOver" destination="PHH-qA-5ff" id="M0W-Do-3qo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
