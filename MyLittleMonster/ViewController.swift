@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var imgMonster: MonsterImg!
     @IBOutlet weak var imgFood: DragImg!
     @IBOutlet weak var imgHeart: DragImg!
+    @IBOutlet weak var imgBear: DragImg!
     @IBOutlet weak var imgPenalty1: UIImageView!
     @IBOutlet weak var imgPenalty2: UIImageView!
     @IBOutlet weak var imgPenalty3: UIImageView!
@@ -40,12 +41,14 @@ class ViewController: UIViewController {
         
         imgFood.dropTarget = imgMonster
         imgHeart.dropTarget = imgMonster
+        imgBear.dropTarget = imgMonster
         
         imgPenalty1.alpha = DIM_ALPHA
         imgPenalty2.alpha = DIM_ALPHA
         imgPenalty3.alpha = DIM_ALPHA
         imgHeart.alpha = DIM_ALPHA
         imgFood.alpha = DIM_ALPHA
+        imgBear.alpha = DIM_ALPHA
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "itemDroppedOnCharacter:", name: "onTargetDropped", object: nil)
         
@@ -77,13 +80,17 @@ class ViewController: UIViewController {
         
         imgFood.alpha = DIM_ALPHA
         imgHeart.alpha = DIM_ALPHA
+        imgBear.alpha = DIM_ALPHA
         imgFood.userInteractionEnabled = false
         imgHeart.userInteractionEnabled = false
+        imgBear.userInteractionEnabled = false
         
         if currentItem == 0 {
             sfxHeart.play()
-        } else {
+        } else if currentItem == 1 {
             sfxBite.play()
+        } else {
+            sfxHeart.play()
         }
     }
     
@@ -96,17 +103,28 @@ class ViewController: UIViewController {
     }
     
     func changeGameState() {
-        let rand = arc4random_uniform(2)
+        let rand = arc4random_uniform(3)
         if rand == 0 {
+            imgBear.alpha = DIM_ALPHA
+            imgBear.userInteractionEnabled = false
             imgFood.alpha = DIM_ALPHA
             imgFood.userInteractionEnabled = false
             imgHeart.alpha = OPAQUE
             imgHeart.userInteractionEnabled = true
-        } else {
+        } else if rand == 1 {
+            imgBear.alpha = DIM_ALPHA
+            imgBear.userInteractionEnabled = false
             imgHeart.alpha = DIM_ALPHA
             imgHeart.userInteractionEnabled = false
             imgFood.alpha = OPAQUE
             imgFood.userInteractionEnabled = true
+        } else {
+            imgBear.alpha = OPAQUE
+            imgBear.userInteractionEnabled = true
+            imgHeart.alpha = DIM_ALPHA
+            imgHeart.userInteractionEnabled = false
+            imgFood.alpha = DIM_ALPHA
+            imgFood.userInteractionEnabled = false
         }
         
         if !monsterHappy {
@@ -142,8 +160,10 @@ class ViewController: UIViewController {
         sfxDeath.play()
         imgHeart.userInteractionEnabled = false
         imgFood.userInteractionEnabled = false
+        imgBear.userInteractionEnabled = false
         imgHeart.alpha = DIM_ALPHA
         imgFood.alpha = DIM_ALPHA
+        imgBear.alpha = DIM_ALPHA
         lblGameOver.hidden = false
         btnRestart.hidden = false
     }
@@ -154,12 +174,14 @@ class ViewController: UIViewController {
         
         imgFood.dropTarget = imgMonster
         imgHeart.dropTarget = imgMonster
+        imgBear.dropTarget = imgMonster
         
         imgPenalty1.alpha = DIM_ALPHA
         imgPenalty2.alpha = DIM_ALPHA
         imgPenalty3.alpha = DIM_ALPHA
         imgHeart.alpha = DIM_ALPHA
         imgFood.alpha = DIM_ALPHA
+        imgBear.alpha = DIM_ALPHA
         imgMonster.playIdleAnimation()
         
         currentPenalties = 0
